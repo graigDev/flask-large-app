@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from config import Config
 from src.extensions import db, migrate, mail, login_manager
+from src.models.user import User
 
 
 def create_app(config_class=Config):
@@ -21,6 +22,10 @@ def create_app(config_class=Config):
     app.register_blueprint(auth_bp, url_prefix='/auth')
 
     #   App default routes
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
     @app.route('/test')
     def test_page():
         return "Testing the Flask application pattern."
