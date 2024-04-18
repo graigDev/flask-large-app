@@ -1,0 +1,16 @@
+{% extends "layouts/default.html" %}
+{% block title %} Flask for large App {% endblock %}
+
+{% block body %}
+    <div>
+        <div class="mb-6">
+            <h1 class="text-xl font-bold">Flask For Large App</h1>
+        </div>
+
+        <div x-data="{ count: 0 }">
+            <button x-on:click="count--">Decrement</button>
+            <span class="font-medium" x-text="count"></span>
+            <button x-on:click="count++">Increment</button>
+        </div>
+    </div>
+{% endblock %}
